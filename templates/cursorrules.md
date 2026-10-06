@@ -24,3 +24,15 @@ any styling.
   `semantic.light.primary`.
 - Regenerate `DESIGN.md` from https://www.colorwaykit.com/brand rather than
   hand-editing hex.
+
+## Verification (run it, don't eyeball it)
+
+After adding or changing any color, verify with one of these — do not rely on
+how the output looks:
+
+    npx colorwaykit-lint --tokens DESIGN.md --target .
+
+Exit 0 = clean; exit 1 = wild hex values or failing pairs. Add `--apca` to also
+report APCA Lc per pair. Wire it into CI so new colors go through the file
+first. With the ColorwayKit MCP server connected, the `check_pair` tool
+validates any fg/bg pair on the fly (setup in the repository README).

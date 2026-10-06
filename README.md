@@ -24,7 +24,37 @@ guessing.
 This repository collects the templates and an example we generate with
 ColorwayKit, so you can wire that file into the agents you already use.
 
-## Quick start
+## Two ways to feed your agent
+
+| | **MCP server (live)** | **Files (this repo)** |
+| --- | --- | --- |
+| What the agent gets | Measured tokens on demand, per-pair contrast results | A versioned DESIGN.md committed to the repo |
+| Setup | One command + a token | Copy two files into the project root |
+| Best for | Daily development, cross-project use | Baking the brand into the codebase, CI, offline |
+| Quota | Account-metered (Free 5/day · Plus 1,000/mo · Pro unlimited) | None — it's a file |
+
+Both are free with a ColorwayKit account. Pick one, or use files as the
+versioned source and MCP as the live interface.
+
+## Option A: MCP server (live)
+
+1. Create a free account at [colorwaykit.com](https://www.colorwaykit.com),
+   then **My Projects → Agent tab → Generate token**.
+2. Connect (Claude Code example):
+
+   ```bash
+   claude mcp add --transport http colorwaykit https://www.colorwaykit.com/api/mcp --header "Authorization: Bearer ck_YOUR_TOKEN"
+   ```
+
+3. Ask your agent: *"list the color tokens for #4F46E5"* — if it replies with
+   named roles and measured contrast numbers, you are connected. Full setup
+   for Cursor / Codex / Gemini CLI: https://www.colorwaykit.com/agents
+
+Tools: `get_theme` (one hex → full verified light & dark theme),
+`check_pair` (validate any text/background pair on the fly),
+`get_theme_by_project` (your saved cloud project).
+
+## Option B: the file way (quick start)
 
 1. Open the [Brand Theme Engine](https://www.colorwaykit.com/brand) and paste
    your brand hex (from your logo or guidelines).
@@ -62,7 +92,34 @@ See [`examples/DESIGN.md`](./examples/DESIGN.md) — generated from the brand co
 | [`templates/cursorrules.md`](./templates/cursorrules.md) | Cursor rules (rename to `.cursorrules` on install) |
 
 Each template only describes how to consume `DESIGN.md`. Copy one into your
-project and adapt the paths.
+project and adapt the paths. Every template now ships with an executable
+verification step — see below.
+
+## Verify with the linter (CLI)
+
+Keep new colors honest with the companion checker — wild-color scan plus
+WCAG 2.1 pair validation, exit codes ready for any CI:
+
+```bash
+npx colorwaykit-lint --tokens DESIGN.md --target .
+```
+
+Exit 0 = clean; exit 1 = wild hex values or failing pairs. Add `--apca` to also
+report APCA Lc per pair. Source lives in [`cli/`](./cli) — wire it into a CI
+step so new colors go through the file first.
+
+```yaml
+# Example GitHub Actions step
+- run: npx colorwaykit-lint --tokens DESIGN.md --target src
+```
+
+## Already have extracted colors?
+
+If you came from a DevTools inspection or an extraction tool, your hex list has
+no roles and no measurements yet. The migration guide walks it the last mile:
+[`docs/migration-extracted-css.md`](./docs/migration-extracted-css.md) — raw hex
+→ semantic roles → measured pairs → a formal DESIGN.md, with a real worked
+example (including a pair that genuinely fails).
 
 ## Notes and limits
 

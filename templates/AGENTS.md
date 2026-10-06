@@ -28,3 +28,30 @@ Don't hand-edit `DESIGN.md`. Regenerate it from
 [the Brand Theme Engine](https://www.colorwaykit.com/brand), which also exports
 the same theme as CSS variables, Tailwind config, Tokens Studio JSON and W3C DTCG
 tokens with matching role names.
+
+## Verification (run it, don't eyeball it)
+
+After adding or changing any color, verify with one of these — do not rely on
+how the output looks:
+
+1. **CLI (offline, CI-ready):**
+
+       npx colorwaykit-lint --tokens DESIGN.md --target .
+
+   Exit 0 = clean; exit 1 = wild hex values or failing pairs. Add `--apca` to
+   also report APCA Lc per pair. Wire it into CI so new colors go through the
+   file first.
+
+2. **MCP tool (live):** with the ColorwayKit MCP server connected, call
+   `check_pair` with any fg/bg hex before using the pairing.
+
+## Option: MCP server (live)
+
+Prefer a live interface over the file? Connect the ColorwayKit MCP server:
+
+    claude mcp add --transport http colorwaykit https://www.colorwaykit.com/api/mcp --header "Authorization: Bearer ck_YOUR_TOKEN"
+
+Get the token from colorwaykit.com → My Projects → Agent tab (free account).
+Tools: `get_theme` (one hex → full verified theme), `check_pair` (validate any
+pair on the fly), `get_theme_by_project`. Quota: Free 5 calls/day · Plus
+1,000/month · Pro unlimited. Details: https://www.colorwaykit.com/agents
