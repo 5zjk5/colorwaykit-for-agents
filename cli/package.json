@@ -2,6 +2,7 @@
   "name": "colorwaykit-lint",
   "version": "1.0.0",
   "description": "CI-ready drift checker for ColorwayKit design tokens: wild-color scan + WCAG/APCA pair validation.",
+  "author": "zhoujingkang",
   "license": "MIT",
   "bin": {
     "colorwaykit-lint": "index.js"
@@ -10,6 +11,15 @@
     "index.js",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/5zjk5/colorwaykit-for-agents.git",
+    "directory": "cli"
+  },
+  "homepage": "https://www.colorwaykit.com",
+  "bugs": {
+    "url": "https://github.com/5zjk5/colorwaykit-for-agents/issues"
+  },
   "engines": {
     "node": ">=18"
   },

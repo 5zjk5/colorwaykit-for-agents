@@ -2,8 +2,10 @@
 
 Give your AI coding agent a brand's color system it can actually follow.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-d9480f)](./LICENSE) [![Website](https://img.shields.io/badge/website-colorwaykit.com-1e1a16)](https://www.colorwaykit.com) [![MCP endpoint](https://img.shields.io/badge/MCP-live_endpoint-d9480f)](https://www.colorwaykit.com/mcp)
+
 **ColorwayKit** turns one brand color into a complete, accessible light & dark
-web theme — 20 semantic tokens, WCAG 2.1 + APCA contrast checks, and exports you
+web theme — 23 semantic roles, WCAG 2.1 + APCA contrast checks, and exports you
 can paste straight into a project.
 
 - Website: https://www.colorwaykit.com
@@ -48,11 +50,12 @@ versioned source and MCP as the live interface.
 
 3. Ask your agent: *"list the color tokens for #4F46E5"* — if it replies with
    named roles and measured contrast numbers, you are connected. Full setup
-   for Cursor / Codex / Gemini CLI: https://www.colorwaykit.com/agents
+   for Cursor / Codex / Gemini CLI: https://www.colorwaykit.com/mcp
 
 Tools: `get_theme` (one hex → full verified light & dark theme),
 `check_pair` (validate any text/background pair on the fly),
-`get_theme_by_project` (your saved cloud project).
+`get_theme_by_project` (your saved cloud project),
+`list_projects` (enumerate your saved projects, newest first).
 
 ## Option B: the file way (quick start)
 
@@ -98,20 +101,16 @@ verification step — see below.
 ## Verify with the linter (CLI)
 
 Keep new colors honest with the companion checker — wild-color scan plus
-WCAG 2.1 pair validation, exit codes ready for any CI:
+WCAG 2.1 pair validation, exit codes for CI. It ships in this repo — runs with Node 18+, no install:
 
 ```bash
-npx colorwaykit-lint --tokens DESIGN.md --target .
+node cli/index.js --tokens DESIGN.md --target .
 ```
 
 Exit 0 = clean; exit 1 = wild hex values or failing pairs. Add `--apca` to also
 report APCA Lc per pair. Source lives in [`cli/`](./cli) — wire it into a CI
 step so new colors go through the file first.
 
-```yaml
-# Example GitHub Actions step
-- run: npx colorwaykit-lint --tokens DESIGN.md --target src
-```
 
 ## Already have extracted colors?
 
@@ -121,6 +120,22 @@ no roles and no measurements yet. The migration guide walks it the last mile:
 → semantic roles → measured pairs → a formal DESIGN.md, with a real worked
 example (including a pair that genuinely fails).
 
+## FAQ
+
+**Where do the templates live?** In this repository — free to copy. The
+DESIGN.md format itself is specified by Google Labs (Apache-2.0).
+
+**Do they work outside Claude Code?** Yes. Templates are plain Markdown:
+`.cursorrules` for Cursor, `AGENTS.md` for Codex and most agents, `SKILL.md`
+for skill-aware clients.
+
+**Do I need both a skill and the MCP server?** They compose. The file is the
+versioned contract your team ships; MCP is the live measurement tool that
+validates pairs and pulls freshly tuned themes on demand.
+
+**Is everything free?** The templates, the Brand Theme Engine and the contrast
+checker are free. The MCP server is metered per account: Free 5 calls/day,
+Plus 1,000/month, Pro unlimited.
 ## Notes and limits
 
 - DESIGN.md is specified by Google Labs and licensed Apache-2.0 at
