@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "colorwaykit": {
+      "type": "streamable-http",
+      "url": "https://www.colorwaykit.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ck_YOUR_TOKEN"
+      }
+    }
+  }
+}
