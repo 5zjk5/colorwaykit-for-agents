@@ -64,4 +64,4 @@ hex 値を手で編集するのではなく、ColorwayKit ブランドテーマ�
 トークンは colorwaykit.com → マイプロジェクト → Agent タブ（無料アカウント）から取得。
 ツール：`get_theme`（hex 1 つ → 検証済みフルテーマ）、`check_pair`（任意ペアの即時検証）、
 `get_theme_by_project`。容量：無料 5 回/日 · Plus 1,000 回/月 · Pro 無制限。
-詳細：https://www.colorwaykit.com/ja/agents
+詳細：https://www.colorwaykit.com/agents
