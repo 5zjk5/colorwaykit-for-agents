@@ -1,12 +1,14 @@
 # ColorwayKit — Skill for AI Coding Agents
 
-One brand color in — a measured, exportable, color-blind-safe design system
-out. Install this skill, paste your token, and your AI coding agent runs the
-whole ColorwayKit engine through MCP: verified light & dark themes, every
-export file, contrast checks, color-blindness reports.
+Ask a coding agent for UI and it ships working code with invented colors: a
+purple gradient here, a different grey there, and a contrast ratio nobody
+measured. The failure adds up — in one public experiment, eleven builds of the
+same six-screen app from a one-paragraph brief kept only 43–50 of 79 deliberate
+design decisions, and community threads keep finding the same shape: *by page 3
+or 4, Claude is back to its own defaults*.
 
-**Get your free token:** [colorwaykit.com](https://www.colorwaykit.com) →
-My Projects → Agent tab
+Colors are the one part of design you can fully **measure**. This skill makes
+your agent measure them — at generation time, not in review.
 
 ## Install (60 seconds)
 
@@ -14,6 +16,9 @@ My Projects → Agent tab
    `~/.claude/skills/colorwaykit/SKILL.md` for Claude Code.
 2. Replace `ck_YOUR_TOKEN_HERE` with your token.
 3. Run the one-line connect command inside the skill.
+
+**Get your free token:** [colorwaykit.com](https://www.colorwaykit.com) →
+My Projects → Agent tab
 
 Done. Ask your agent:
 
@@ -47,6 +52,9 @@ Done. Ask your agent:
   consumes.
 - **Accessibility becomes evidence.** Four-vision-type simulation and measured
   ratios turn "looks fine to me" into a report your team and clients can read.
+- **Regenerate, never hand-edit.** When the brand evolves, one hex in — the
+  whole system re-verifies itself. Hand-edited hex values bypass the recorded
+  measurements; generated ones carry their receipts.
 
 ## Prefer files over live calls?
 
@@ -63,6 +71,7 @@ versioned with your code:
 - Website: [colorwaykit.com](https://www.colorwaykit.com)
 - MCP setup for Claude Code / Cursor / Codex / Gemini CLI: [colorwaykit.com/mcp](https://www.colorwaykit.com/mcp)
 - Skills overview: [colorwaykit.com/skills](https://www.colorwaykit.com/skills)
+- The DESIGN.md workflow, step by step: [colorwaykit.com/blog/colorwaykit-for-agents](https://www.colorwaykit.com/blog/colorwaykit-for-agents)
 
 ## License
 

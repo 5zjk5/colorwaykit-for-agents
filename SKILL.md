@@ -1,13 +1,36 @@
 ---
 name: colorwaykit
-description: Brand color system via the ColorwayKit MCP server. Generate a verified light & dark theme from one brand hex, export every file (CSS, Tailwind, DTCG, DESIGN.md), check any contrast pair, and produce a color-blindness report. Use when creating or restyling UI, choosing text/background colors, or when the user mentions brand colors, design tokens, exports, or accessibility.
+description: Brand color system for coding agents via the ColorwayKit MCP server — stop inventing hex values. Generate a measured light & dark theme from one brand hex (23 semantic roles, WCAG 2.1 + APCA on every pair), export all files (CSS, Tailwind, DTCG, DESIGN.md), run color-blindness reports, check any contrast pair. Use when building or restyling UI, choosing colors, or whenever brand colors, design tokens, exports, or accessibility come up.
 ---
 
-# ColorwayKit — brand color system via MCP
+# ColorwayKit — the color system your agent doesn't have to invent
 
-One brand color in — measured, exportable, color-blind-safe design tokens out.
-This skill connects your agent to the ColorwayKit MCP server and routes every
-color job to the right tool.
+Ask a coding agent for UI and it ships working code with invented colors: a
+purple gradient here, a different grey there, and a contrast ratio nobody
+measured. The failure is measurable too — in one public experiment, eleven
+builds of the same six-screen app from a one-paragraph brief kept only 43–50 of
+79 deliberate design decisions; community threads keep finding the same shape,
+"by page 3 or 4 Claude is back to its own defaults". Colors are the one part of
+design you can fully **measure**: contrast, hue preservation and color-blind
+safety are all numbers. This skill makes your agent measure them — at
+generation time, not in review.
+
+## What your agent gets
+
+- **A verified theme from one brand color.** 23 semantic roles × light & dark,
+  every text/background pair measured under WCAG 2.1 **and** APCA, failing
+  pairs shipped with fixes that keep the brand hue.
+- **Every export file in one call.** CSS variables, Tailwind v3 & v4, SCSS,
+  W3C DTCG, Tokens Studio, DESIGN.md and brand assets — identical to the zip
+  download on colorwaykit.com, written to disk unchanged.
+- **Accessibility as evidence.** A color-blindness report (Markdown + JSON)
+  simulating four vision types across every role pair — numbers don't care
+  whether you can see red.
+- **Checks before it ships.** Any pair the agent invents mid-task gets judged
+  (and fixed) before it lands, not in the second review.
+- **A file-contract fallback.** If the project ships DESIGN.md, the skill
+  follows it offline — and regenerating beats hand-editing, because hand edits
+  bypass the recorded measurements.
 
 ## Setup (once per machine — fill in YOUR token)
 
@@ -48,11 +71,11 @@ an auth error, or the token is still the placeholder `ck_YOUR_TOKEN_HERE`:
 5. **Never echo the full token back, never write it into repo files.** It lives
    in the MCP config only.
 
-## Tool map (every call = 1 asset credit)
+## Tool map
 
 | Tool | Call it for |
 | --- | --- |
-| `get_theme` | One brand hex → the full verified theme: 23 semantic roles, light & dark, every pair measured (WCAG 2.1 + APCA), failing pairs with fixes |
+| `get_theme` | One brand hex → the full verified theme: 23 semantic roles, light & dark, every pair measured, failing pairs with fixes |
 | `export_assets` | Every export file in one call — CSS variables, Tailwind v3 & v4, SCSS, DTCG, Tokens Studio, DESIGN.md, brand assets. Identical to the zip download on colorwaykit.com |
 | `export_cvd` | Color-blindness report: Markdown + JSON, four vision types × every role pair |
 | `get_report` | Full accessibility report.md + report.json, paste-ready for PRs and CI |
@@ -72,13 +95,9 @@ an auth error, or the token is still the placeholder `ck_YOUR_TOKEN_HERE`:
    whole bundle; write each file to disk unchanged — do not reformat.
 4. **Accessibility ask → `export_cvd`**, and cite the report in the PR
    description.
-5. **Be economical.** Every MCP call consumes one asset credit from the user's
-   monthly pool (Free 10 · Plus 100 · Pro unlimited — shared with website
-   downloads). Don't re-fetch a theme you already have in this session; batch
-   related questions into the calls you make.
-6. **A hex someone just typed in is outside the measured system.** `check_pair`
+5. **A hex someone just typed in is outside the measured system.** `check_pair`
    it, and say so in your answer.
-7. **If the project already has `DESIGN.md`**, follow it (see below); call MCP
+6. **If the project already has `DESIGN.md`**, follow it (see below); call MCP
    only to regenerate or verify new pairs. If the MCP server is unreachable,
    run the token flow (above), or fall back to the file and tell the user the
    measurements may be stale.
@@ -104,4 +123,9 @@ Hand-editing hex values bypasses the recorded measurements. Regenerate from the
 Brand Theme Engine (https://www.colorwaykit.com/brand) or via `get_theme`, then
 re-export.
 
-Docs & setup for every client: https://www.colorwaykit.com/mcp
+## About ColorwayKit
+
+- Generate a theme in the browser, free: [colorwaykit.com/brand](https://www.colorwaykit.com/brand)
+- MCP setup for every client (Claude Code, Cursor, Codex, Gemini CLI): [colorwaykit.com/mcp](https://www.colorwaykit.com/mcp)
+- The DESIGN.md workflow, step by step: [colorwaykit.com/blog/colorwaykit-for-agents](https://www.colorwaykit.com/blog/colorwaykit-for-agents)
+- All web tools: [colorwaykit.com](https://www.colorwaykit.com)
