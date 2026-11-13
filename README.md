@@ -23,32 +23,30 @@ Done. Ask your agent:
 - *"Give me a color-blindness report"* → Markdown + JSON, four vision types
 - *"Check #FFFFFF on #4F46E5"* → WCAG + APCA verdict with a fix on fail
 
-## The 8 tools your agent gets (every call = 1 asset credit)
+## What your agent gets — 8 tools
 
-| Tool | What it returns |
+| Tool | What it does for you |
 | --- | --- |
-| `get_theme` | Full verified theme from one hex — 23 semantic roles, light & dark, measured pairs, fixes |
-| `export_assets` | Every export file in one call — identical to the zip on colorwaykit.com |
-| `export_cvd` | Color-blindness report (Markdown + JSON) |
-| `get_report` | Full accessibility report.md + report.json for PRs and CI |
-| `check_pair` | Any text/background pair judged under WCAG + APCA, with a fix on fail |
-| `get_token_usage` | What each semantic token is for, light & dark hex |
-| `get_theme_by_project` | Your saved cloud-project theme |
-| `list_projects` | Your saved projects, newest first |
+| `get_theme` | Turns one brand hex into the full verified theme: 23 semantic roles, light & dark, every text/background pair measured (WCAG 2.1 + APCA), failing pairs come with hue-preserving fixes |
+| `export_assets` | Hands over every export file in one call — CSS variables, Tailwind v3 & v4 config, SCSS, W3C DTCG, Tokens Studio, DESIGN.md, brand assets. Identical to the zip on colorwaykit.com |
+| `export_cvd` | Produces a color-blindness report (Markdown + JSON): every role pair simulated across four vision types, so accessibility reviews cite numbers instead of opinions |
+| `get_report` | Full accessibility report.md + report.json — paste straight into PRs, issues and CI |
+| `check_pair` | Judges any text/background pair under WCAG + APCA before it ships, and suggests a fix that keeps your brand hue when it fails |
+| `get_token_usage` | Explains what each semantic token is for, with light & dark hex — no more "which grey is this?" |
+| `get_theme_by_project` | Brings back the verified theme saved in your ColorwayKit cloud projects |
+| `list_projects` | Lists your saved projects, newest first |
 
-## How the monthly pool works
+## What changes for you
 
-Every MCP call consumes **one asset credit** from your account's monthly pool,
-shared with asset downloads on the website:
-
-| Plan | Asset credits | Price |
-| --- | --- | --- |
-| Free | 10 / month | $0 |
-| Plus | 100 / month | $9.9/mo |
-| Pro | Unlimited | $19.9/mo |
-
-The skill teaches your agent to economize: fetch a theme once, reuse the roles,
-batch questions. Pick a plan at [colorwaykit.com/pricing](https://www.colorwaykit.com/pricing).
+- **No more invented colors.** The agent stops guessing greys and pulls roles
+  from one measured system, so page 1 and page 10 look like the same product.
+- **No more eyeballing contrast.** Every pairing ships with measured WCAG and
+  APCA verdicts — and a fix that never repaints your brand.
+- **No more re-describing your palette.** The token file, the exports and the
+  live checks all speak the same role names, across every format your stack
+  consumes.
+- **Accessibility becomes evidence.** Four-vision-type simulation and measured
+  ratios turn "looks fine to me" into a report your team and clients can read.
 
 ## Prefer files over live calls?
 
@@ -65,7 +63,6 @@ versioned with your code:
 - Website: [colorwaykit.com](https://www.colorwaykit.com)
 - MCP setup for Claude Code / Cursor / Codex / Gemini CLI: [colorwaykit.com/mcp](https://www.colorwaykit.com/mcp)
 - Skills overview: [colorwaykit.com/skills](https://www.colorwaykit.com/skills)
-- Plans & pricing: [colorwaykit.com/pricing](https://www.colorwaykit.com/pricing)
 
 ## License
 
